@@ -1,8 +1,11 @@
-@file:OptIn(ExperimentalComposeLibrary::class)
+@file:OptIn(ExperimentalComposeLibrary::class, ExperimentalKotlinGradlePluginApi::class)
 
+import org.gradle.kotlin.dsl.invoke
 import org.jetbrains.compose.ExperimentalComposeLibrary
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
+import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSetTree
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
@@ -16,6 +19,17 @@ kotlin {
     androidTarget {
         compilerOptions {
             jvmTarget.set(JvmTarget.JVM_11)
+        }
+
+        instrumentedTestVariant {
+
+            sourceSetTree.set(KotlinSourceSetTree.test)
+
+//            dependencies {
+//                implementation(libs.core.ktx)
+//                implementation(libs.compose.ui.test.junit4.android)
+//                debugImplementation(libs.compose.ui.test.manifest)
+//            }
         }
     }
     
@@ -32,6 +46,13 @@ kotlin {
     jvm()
     
     sourceSets {
+
+        androidInstrumentedTest.dependencies {
+            implementation(libs.core.ktx)
+            implementation(libs.compose.ui.test.junit4.android)
+//            debugImplementation(libs.compose.ui.test.manifest)
+        }
+
         androidMain.dependencies {
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
@@ -39,6 +60,7 @@ kotlin {
             // koin
             implementation(libs.koin.android)
             implementation(libs.koin.androidx.compose)
+//            debugImplementation(libs.compose.ui.test.manifest)
         }
         commonMain.dependencies {
             implementation(compose.runtime)
@@ -83,6 +105,9 @@ android {
         targetSdk = libs.versions.android.targetSdk.get().toInt()
         versionCode = 1
         versionName = "1.0"
+
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
     }
     packaging {
         resources {
@@ -104,6 +129,11 @@ dependencies {
     testImplementation(libs.junit.jupiter)
     testImplementation(libs.junit.jupiter)
     debugImplementation(compose.uiTooling)
+
+    implementation(libs.core.ktx)
+    implementation(libs.compose.ui.test.junit4.android)
+    implementation(libs.compose.ui.test.manifest)
+    debugImplementation(libs.compose.ui.test.manifest)
 }
 
 compose.desktop {

@@ -24,9 +24,9 @@ lifecycleViewModel = "2.9.4"
 
 #CommonTest
 assertK = "0.28.1"
-coreKtx = "1.6.1"
-composeTest = "1.6.8"
-junitJupiter = "5.8.1"
+coreKtx = "1.7.0"
+composeTest = "1.9.4"
+junitJupiter = "6.0.1"
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
