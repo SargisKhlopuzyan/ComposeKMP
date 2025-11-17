@@ -63,6 +63,7 @@ kotlin {
 
             implementation(libs.assertK)
             implementation(compose.uiTest)
+
         }
         jvmMain.dependencies {
             implementation(compose.desktop.currentOs)
