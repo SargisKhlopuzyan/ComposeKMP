@@ -12,6 +12,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -21,12 +22,19 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.core.edit
+import androidx.datastore.preferences.core.intPreferencesKey
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import composekmp.composeapp.generated.resources.Res
 import composekmp.composeapp.generated.resources.test
 import dependencies.MyViewModel
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.firstOrNull
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import networking.InsultCensorClient
 import org.jetbrains.compose.resources.stringResource
@@ -39,6 +47,7 @@ import util.onSuccess
 @Composable
 @Preview
 fun App(
+    prefs: DataStore<Preferences>,
     client: InsultCensorClient,
     batteryManager: BatteryManager
 ) {
@@ -52,7 +61,7 @@ fun App(
             ) {
                 val viewModel: MyViewModel = koinViewModel()
 
-                HomeScreen(client, batteryManager, viewModel.getHelloWorldString())
+                HomeScreen(prefs, client, batteryManager, viewModel.getHelloWorldString())
             }
         }
 
@@ -61,6 +70,7 @@ fun App(
 
 @Composable
 fun HomeScreen(
+    prefs: DataStore<Preferences>,
     client: InsultCensorClient,
     batteryManager: BatteryManager,
     viewModelText: String
@@ -72,6 +82,16 @@ fun HomeScreen(
             .fillMaxSize(),
         contentAlignment = Alignment.Center,
     ) {
+        // dataStore part
+        val counterKey = intPreferencesKey("counter")
+        val counter by prefs
+            .data
+            .map {
+                it[counterKey] ?: 0
+            }
+            .collectAsState(initial = 0)
+
+        // censored part
         var censoredText by remember {
             mutableStateOf<String?>(null)
         }
@@ -87,6 +107,23 @@ fun HomeScreen(
         val scope = rememberCoroutineScope()
 
         LazyColumn(modifier = Modifier.fillMaxSize()) {
+
+            item {
+                Text(text = "$counter")
+            }
+            item {
+                Button(onClick = {
+                    scope.launch {
+//                        counter += 1
+                        prefs.edit {
+                            it[counterKey] = counter + 1
+                        }
+                    }
+                }) {
+                    Text(text = "Increment")
+                }
+            }
+
             item {
                 TextField(
                     value = uncensoredText,

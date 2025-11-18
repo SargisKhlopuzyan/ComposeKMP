@@ -32,7 +32,7 @@ kotlin {
 //            }
         }
     }
-    
+
     listOf(
         iosArm64(),
         iosSimulatorArm64()
@@ -42,22 +42,10 @@ kotlin {
             isStatic = true
         }
     }
-    
+
     jvm()
-    
+
     sourceSets {
-        androidMain.dependencies {
-            implementation(compose.preview)
-            implementation(libs.androidx.activity.compose)
-
-            // koin
-            implementation(libs.koin.android)
-            implementation(libs.koin.androidx.compose)
-//            debugImplementation(libs.compose.ui.test.manifest)
-
-            // ktor
-            implementation(libs.ktor.client.okhttp)
-        }
         commonMain.dependencies {
             implementation(compose.runtime)
             implementation(compose.foundation)
@@ -77,6 +65,24 @@ kotlin {
 
             // ktor
             implementation(libs.bundles.ktor)
+
+            // datastore
+            // api allow a dependence to be used in modules which extended from this module (ivm, android, native)
+            api(libs.datastore)
+            api(libs.datastore.preferences)
+
+        }
+        androidMain.dependencies {
+            implementation(compose.preview)
+            implementation(libs.androidx.activity.compose)
+
+            // koin
+            implementation(libs.koin.android)
+            implementation(libs.koin.androidx.compose)
+//            debugImplementation(libs.compose.ui.test.manifest)
+
+            // ktor
+            implementation(libs.ktor.client.okhttp)
         }
         nativeMain.dependencies {
             // ktor
