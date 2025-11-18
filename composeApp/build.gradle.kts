@@ -1,6 +1,5 @@
 @file:OptIn(ExperimentalComposeLibrary::class, ExperimentalKotlinGradlePluginApi::class)
 
-import org.gradle.kotlin.dsl.invoke
 import org.jetbrains.compose.ExperimentalComposeLibrary
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
@@ -13,6 +12,7 @@ plugins {
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
     alias(libs.plugins.composeHotReload)
+    alias(libs.plugins.kotlinSerialization)
 }
 
 kotlin {
@@ -46,13 +46,6 @@ kotlin {
     jvm()
     
     sourceSets {
-
-        androidInstrumentedTest.dependencies {
-            implementation(libs.core.ktx)
-            implementation(libs.compose.ui.test.junit4.android)
-//            debugImplementation(libs.compose.ui.test.manifest)
-        }
-
         androidMain.dependencies {
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
@@ -61,6 +54,9 @@ kotlin {
             implementation(libs.koin.android)
             implementation(libs.koin.androidx.compose)
 //            debugImplementation(libs.compose.ui.test.manifest)
+
+            // ktor
+            implementation(libs.ktor.client.okhttp)
         }
         commonMain.dependencies {
             implementation(compose.runtime)
@@ -78,7 +74,23 @@ kotlin {
             implementation(libs.koin.compose.viewmodel)
             implementation(libs.lifecycle.viewmodel)
             implementation(libs.navigation.compose)
+
+            // ktor
+            implementation(libs.bundles.ktor)
         }
+        nativeMain.dependencies {
+            // ktor
+            implementation(libs.ktor.client.darwin)
+        }
+        jvmMain.dependencies {
+            implementation(compose.desktop.currentOs)
+            implementation(libs.kotlinx.coroutinesSwing)
+            implementation(libs.oshi.core)
+
+            // ktor
+            implementation(libs.ktor.client.okhttp)
+        }
+
         commonTest.dependencies {
             implementation(libs.kotlin.test)
             implementation(kotlin("test-annotations-common"))
@@ -87,10 +99,11 @@ kotlin {
             implementation(compose.uiTest)
 
         }
-        jvmMain.dependencies {
-            implementation(compose.desktop.currentOs)
-            implementation(libs.kotlinx.coroutinesSwing)
-            implementation(libs.oshi.core)
+
+        androidInstrumentedTest.dependencies {
+            implementation(libs.core.ktx)
+            implementation(libs.compose.ui.test.junit4.android)
+//            debugImplementation(libs.compose.ui.test.manifest)
         }
     }
 }

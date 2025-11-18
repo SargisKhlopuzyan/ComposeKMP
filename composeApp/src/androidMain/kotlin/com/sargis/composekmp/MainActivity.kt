@@ -8,6 +8,9 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.tooling.preview.Preview
+import io.ktor.client.engine.okhttp.OkHttp
+import networking.InsultCensorClient
+import networking.createHttpClient
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -15,9 +18,14 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         setContent {
-            App(batteryManager = remember{
-                BatteryManager(applicationContext)
-            })
+            App(
+                client = remember {
+                    InsultCensorClient(createHttpClient(OkHttp.create()))
+                },
+                batteryManager = remember {
+                    BatteryManager(applicationContext)
+                }
+            )
         }
     }
 }
