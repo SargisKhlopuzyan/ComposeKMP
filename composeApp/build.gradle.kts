@@ -74,10 +74,11 @@ kotlin {
             // already exist
 //            implementation(libs.lifecycle.viewmodel)
 //            implementation(libs.androidx.lifecycle.viewmodelCompose)
-            // moko -permission
+            // moko-permission
             api(libs.moko.permissions)
             api(libs.moko.permissions.compose)
 
+            implementation(libs.kotlinx.datetime)
         }
         androidMain.dependencies {
             implementation(compose.preview)

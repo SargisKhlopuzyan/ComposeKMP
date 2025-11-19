@@ -32,13 +32,16 @@ junitJupiter = "6.0.1"
 ktor = "3.3.2"
 
 #datastore
-datastore = "1.1.1"
+datastore = "1.1.7"
 
 #moko - permissions
-moko = "0.18.0"
+#moko = "0.18.0"
+moko = "0.20.1"
 
 #splashscreen
-core-splashscreen = "1.0.1"
+core-splashscreen = "1.2.0"
+
+datetime = "0.7.1"
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
@@ -87,6 +90,8 @@ moko-permissions-compose = { module = "dev.icerock.moko:permissions-compose", ve
 
 #splashscreen
 core-splashscreen = { group = "androidx.core", name = "core-splashscreen", version.ref = "core-splashscreen" }
+
+kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "datetime"}
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
