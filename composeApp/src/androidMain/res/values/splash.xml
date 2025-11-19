@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.App.Staring" parent="Theme.SplashScreen">
+<!--    <style name="Theme.App.Staring" parent="Theme.AppCompat.DayNight.NoActionBar">-->
+        <item name="windowSplashScreenBackground">#202020</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_logo</item>
+        <item name="postSplashScreenTheme">@android:style/Theme.Material.NoActionBar</item>
+    </style>
+
+<!--    android:theme="@android:style/Theme.Material.Light.NoActionBar">-->
+</resources>

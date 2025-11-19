@@ -37,6 +37,9 @@ datastore = "1.1.1"
 #moko - permissions
 moko = "0.18.0"
 
+#splashscreen
+core-splashscreen = "1.0.1"
+
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
 kotlin-testJunit = { module = "org.jetbrains.kotlin:kotlin-test-junit", version.ref = "kotlin" }
@@ -81,6 +84,9 @@ datastore-preferences = { module = "androidx.datastore:datastore-preferences", v
 #moko - permissions
 moko-permissions = { module = "dev.icerock.moko:permissions", version.ref = "moko" }
 moko-permissions-compose = { module = "dev.icerock.moko:permissions-compose", version.ref = "moko" }
+
+#splashscreen
+core-splashscreen = { group = "androidx.core", name = "core-splashscreen", version.ref = "core-splashscreen" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

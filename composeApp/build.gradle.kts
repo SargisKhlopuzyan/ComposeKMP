@@ -90,6 +90,10 @@ kotlin {
 
             // ktor
             implementation(libs.ktor.client.okhttp)
+
+            // splashscreen
+            implementation(libs.core.splashscreen)
+
         }
         nativeMain.dependencies {
             // ktor
