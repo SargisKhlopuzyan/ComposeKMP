@@ -71,6 +71,13 @@ kotlin {
             api(libs.datastore)
             api(libs.datastore.preferences)
 
+            // already exist
+//            implementation(libs.lifecycle.viewmodel)
+//            implementation(libs.androidx.lifecycle.viewmodelCompose)
+            // moko -permission
+            api(libs.moko.permissions)
+            api(libs.moko.permissions.compose)
+
         }
         androidMain.dependencies {
             implementation(compose.preview)

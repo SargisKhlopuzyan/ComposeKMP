@@ -34,6 +34,9 @@ ktor = "3.3.2"
 #datastore
 datastore = "1.1.1"
 
+#moko - permissions
+moko = "0.18.0"
+
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
 kotlin-testJunit = { module = "org.jetbrains.kotlin:kotlin-test-junit", version.ref = "kotlin" }
@@ -46,22 +49,22 @@ androidx-activity-compose = { module = "androidx.activity:activity-compose", ver
 androidx-lifecycle-viewmodelCompose = { module = "org.jetbrains.androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "androidx-lifecycle" }
 androidx-lifecycle-runtimeCompose = { module = "org.jetbrains.androidx.lifecycle:lifecycle-runtime-compose", version.ref = "androidx-lifecycle" }
 kotlinx-coroutinesSwing = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-swing", version.ref = "kotlinx-coroutines" }
-oshi-core = {module = "com.github.oshi:oshi-core", version.ref = "oshiCore"}
+oshi-core = { module = "com.github.oshi:oshi-core", version.ref = "oshiCore" }
 
 #CommonTest
-assertK = {module = "com.willowtreeapps.assertk:assertk", version.ref = "assertK"}
-compose-ui-test-junit4-android = {module = "androidx.compose.ui:ui-test-junit4", version.ref = "composeTest"}
-compose-ui-test-manifest = {module = "androidx.compose.ui:ui-test-manifest", version.ref = "composeTest"}
-core-ktx = {group = "androidx.test", name = "core-ktx", version.ref = "coreKtx"}
+assertK = { module = "com.willowtreeapps.assertk:assertk", version.ref = "assertK" }
+compose-ui-test-junit4-android = { module = "androidx.compose.ui:ui-test-junit4", version.ref = "composeTest" }
+compose-ui-test-manifest = { module = "androidx.compose.ui:ui-test-manifest", version.ref = "composeTest" }
+core-ktx = { group = "androidx.test", name = "core-ktx", version.ref = "coreKtx" }
 
 #koin
-lifecycle-viewmodel = {module = "androidx.lifecycle:lifecycle-viewmodel", version.ref = "lifecycleViewModel"}
-koin-android = {module = "io.insert-koin:koin-android", version.ref = "koin"}
-koin-androidx-compose = {module = "io.insert-koin:koin-androidx-compose", version.ref = "koin"}
-koin-core = {module = "io.insert-koin:koin-core", version.ref = "koin"}
-koin-compose = {module = "io.insert-koin:koin-compose", version.ref = "koinComposeMultiplatform"}
-koin-compose-viewmodel = {module = "io.insert-koin:koin-compose-viewmodel", version.ref = "koinComposeMultiplatform"}
-navigation-compose = {module = "org.jetbrains.androidx.navigation:navigation-compose", version.ref = "navigationCompose"}
+lifecycle-viewmodel = { module = "androidx.lifecycle:lifecycle-viewmodel", version.ref = "lifecycleViewModel" }
+koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin" }
+koin-androidx-compose = { module = "io.insert-koin:koin-androidx-compose", version.ref = "koin" }
+koin-core = { module = "io.insert-koin:koin-core", version.ref = "koin" }
+koin-compose = { module = "io.insert-koin:koin-compose", version.ref = "koinComposeMultiplatform" }
+koin-compose-viewmodel = { module = "io.insert-koin:koin-compose-viewmodel", version.ref = "koinComposeMultiplatform" }
+navigation-compose = { module = "org.jetbrains.androidx.navigation:navigation-compose", version.ref = "navigationCompose" }
 junit-jupiter = { group = "org.junit.jupiter", name = "junit-jupiter", version.ref = "junitJupiter" }
 
 #ktor
@@ -74,6 +77,10 @@ ktor-serialization-kotlinx-json = { module = "io.ktor:ktor-serialization-kotlinx
 ktor-client-auth = { module = "io.ktor:ktor-client-auth", version.ref = "ktor" }
 datastore = { module = "androidx.datastore:datastore", version.ref = "datastore" }
 datastore-preferences = { module = "androidx.datastore:datastore-preferences", version.ref = "datastore" }
+
+#moko - permissions
+moko-permissions = { module = "dev.icerock.moko:permissions", version.ref = "moko" }
+moko-permissions-compose = { module = "dev.icerock.moko:permissions-compose", version.ref = "moko" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
